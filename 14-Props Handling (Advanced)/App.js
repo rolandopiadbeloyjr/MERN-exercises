@@ -1,11 +1,13 @@
 import * as React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
 const App = () => {
   const stories = [
     {
       title: 'React',
       url: 'https://reactjs.org/',
-      author: 'Jordan Walke',
+      author: ' Jordan Walke ',
       num_comments: 3,
       points: 4,
       objectID: 0,
@@ -13,7 +15,7 @@ const App = () => {
     {
       title: 'Redux',
       url: 'https://redux.js.org/',
-      author: 'Dan Abramov, Andrew Clark',
+      author: ' Dan Abramov, Andrew Clark ',
       num_comments: 2,
       points: 5,
       objectID: 1,
@@ -31,6 +33,9 @@ const App = () => {
   );
 
   return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
     <div>
       <h1>My Hacker Stories</h1>
 
@@ -40,38 +45,49 @@ const App = () => {
 
       <List list={searchedStories} />
     </div>
+    <a
+    className="App-link"
+    href="https://reactjs.org"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Learn React
+  </a>
+</header>
+</div>
   );
 };
 
-const Search = ({ search, onSearch }) => (
+const Search = (props) => (
   <div>
     <label htmlFor="search">Search: </label>
     <input
       id="search"
       type="text"
-      value={search}
-      onChange={onSearch}
+      value={props.search}
+      onChange={props.onSearch}
     />
   </div>
 );
 
-const List = ({ list }) => (
+const List = (props) => (
   <ul>
-    {list.map((item) => (
+    {props.list.map((item) => (
       <Item key={item.objectID} item={item} />
     ))}
   </ul>
 );
 
-const Item = ({ item }) => (
+const Item = (props) => (
   <li>
     <span>
-      <a href={item.url}>{item.title}</a>
+      <a href={props.item.url}>{props.item.title}</a>
     </span>
-    <span>{item.author}</span>
-    <span>{item.num_comments}</span>
-    <span>{item.points}</span>
+    <span>{props.item.author}</span>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
   </li>
 );
 
 export default App;
+
